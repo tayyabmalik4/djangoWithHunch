@@ -64,8 +64,15 @@
     margin-right: 5px;
   }
 
-  .humid_div h1 {
+  .humid_div h5 {
     margin-right: 70px;
+  }
+  .humid_div .temptime_div{
+    display: flex;
+    flex-direction: column;
+  }
+  .temptime_div p{
+    font-size: 13px;
   }
 </style>
 <script>
@@ -77,27 +84,35 @@
 
 
 <body>
-  <h1 class="main_heading">{{task.date}}</h1>
+  <h1 class="main_heading">Temperature And Humidity Sense At Hunch Automation</h1>
 
   <div class="main_div">
     <div class="temp_div">
-      <h1><i class="fas fa-temperature-low"></i>Temperature {{task.temperature}}<sup>o</sup>C</h1>
+      <div class="temptime_div">
+      <h5><i class="fas fa-temperature-low"></i>Temperature {{task.temperature}}<sup>o</sup>C</h5>
+      <h5><i class="fa fa-tint" aria-hidden="true"></i>Humidity {{task.humidity}}%</h5>
+    <p>Last Update <br>{{task.date|date:"d-m-Y"}} {{task.time}}</p>
+    </div>
       <div>
-        <canvas id="canvas-temp" width="600px" height="300px"></canvas>
+        <canvas id="canvas-temp" width="900px" height="200px"></canvas>
       </div>
     </div>
   </div>
-  <div class="humid_div">
-    <h1><i class="fa fa-tint" aria-hidden="true"></i>Humidity {{task.humidity}}%</h1>
-    <div>
-      <canvas id="canvas-humid" width="600px" height="300px"></canvas>
-    </div>
+  <!-- <div class="humid_div">
+    <div class="humidtime_div">
+    <h5><i class="fa fa-tint" aria-hidden="true"></i>Humidity {{task.humidity}}%</h5>
+    <p>Last Update {{task.date|date:"d-m-Y"}} {{task.time}}</p>
   </div>
+    <div>
+      <canvas id="canvas-humid" width="900px" height="150px"></canvas>
+    </div>
+  </div> -->
   <!-- this is the chartjs javascript -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
   <!-- this script is for temperture -->
-  <script>
+ <script> 
     let a = JSON.parse('{{temperature|safe}}')
+    let b = JSON.parse('{{humidity|safe}}')
     
     let time1 = "{{time1}}"
     let time2 = "{{time2}}"
@@ -105,6 +120,24 @@
     let time4 = "{{time4}}"
     let time5 = "{{time5}}"
     let time6 = "{{time6}}"
+    let time7 = "{{time7}}"
+    let time8 = "{{time8}}"
+    let time9 = "{{time9}}"
+    let time10 = "{{time10}}"
+    let time11 = "{{time11}}"
+    let time12 = "{{time12}}"
+    let time13 = "{{time13}}"
+    let time14 = "{{time14}}"
+    let time15 = "{{time15}}"
+    let time16 = "{{time16}}"
+    let time17 = "{{time17}}"
+    let time18 = "{{time18}}"
+    let time19 = "{{time19}}"
+    let time20 = "{{time20}}"
+    let time21 = "{{time21}}"
+    let time22 = "{{time22}}"
+    let time23 = "{{time23}}"
+    let time24 = "{{time24}}"
 
 
     const labels = [
@@ -114,18 +147,59 @@
       time4,
       time5,
       time6,
+      time7,
+      time8,
+      time9,
+      time10,
+      time11,
+      time12,
+      time13,
+      time14,
+      time15,
+      time16,
+      time17,
+      time18,
+      time19,
+      time20,
+      time21,
+      time22,
+      time23,
+      time24,
     ];
   
   
     const data = {
       labels: labels,
-      datasets: [{
+      datasets: [
+        {
         label: 'Temperature',
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
         borderColor: 'rgb(255, 99, 132)',
         // data: [17.90,17.90,18.90,18.90,17.90,18.90],
         data:a
-      }]
+      },
+      {
+        label: 'Humidity',
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+        borderColor: 'green',
+        // data: [17.90,17.90,18.90,18.90,17.90,18.90],
+        data:b
+      }
+    ]
     };
   
     const config = {
@@ -147,7 +221,7 @@
   </script>
 
   <!-- this script is for Humidity graph -->
-  <script>
+  <!-- <script>
     let b = JSON.parse('{{humidity|safe}}')
     
     let xtime1 = "{{time1}}"
@@ -195,7 +269,7 @@
       document.getElementById('canvas-humid'),
       xconfig
     );
-  </script>
+  </script> -->
 </body>
 
 </html>
